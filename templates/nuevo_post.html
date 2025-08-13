@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Nuevo Post - MiniBlog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+    <header>
+        <h1>Nuevo Post</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Inicio</a> |
+            <a href="{{ url_for('listar_categorias') }}">Categorías</a> |
+            <a href="{{ url_for('listar_usuarios') }}">Usuarios</a>
+        </nav>
+        <hr>
+    </header>
+
+    {% if error %}
+        <div class="error" style="color: red;">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <form action="{{ url_for('crear_post') }}" method="POST">
+        <label for="titulo">Título:</label><br>
+        <input type="text" id="titulo" name="titulo" value="{{ request.form.titulo or '' }}" required><br><br>
+
+        <label for="contenido">Contenido:</label><br>
+        <textarea id="contenido" name="contenido" rows="8" cols="60" required>{{ request.form.contenido or '' }}</textarea><br><br>
+
+        <fieldset>
+            <legend>Categorías:</legend>
+            {% for categoria in categorias %}
+                <input type="checkbox" id="cat{{ categoria.id }}" name="categorias" value="{{ categoria.id }}"
+                    {% if categoria.id|string in request.form.getlist('categorias') %}checked{% endif %}>
+                <label for="cat{{ categoria.id }}">{{ categoria.nombre }}</label><br>
+            {% endfor %}
+        </fieldset><br>
+
+        <button type="submit">Crear Post</button>
+    </form>
+
+    <footer>
+        <hr>
+        <p>MiniBlog &copy; 2025</p>
+    </footer>
+</body>
+</html>

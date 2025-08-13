@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}Registro - MiniBlog{% endblock %}
+
+{% block content %}
+<h2>Registrarse</h2>
+<form method="POST" action="{{ url_for('registro') }}">
+    <label for="nombre_usuario">Nombre de usuario:</label>
+    <input type="text" name="nombre_usuario" id="nombre_usuario" required />
+
+    <label for="correo_electronico">Correo electrónico:</label>
+    <input type="email" name="correo_electronico" id="correo_electronico" required />
+
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" name="contrasena" id="contrasena" required />
+
+    <label for="confirmar_contrasena">Confirmar contraseña:</label>
+    <input type="password" name="confirmar_contrasena" id="confirmar_contrasena" required />
+
+    <button type="submit">Registrarse</button>
+</form>
+<p>¿Ya tenés cuenta? <a href="{{ url_for('login') }}">Iniciá sesión acá</a>.</p>
+{% endblock %}

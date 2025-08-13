@@ -1,0 +1,16 @@
+
+{% extends "layout.html" %}
+
+{% block title %}Lista de Usuarios{% endblock %}
+
+{% block content %}
+  <h2>Usuarios registrados</h2>
+  <ul>
+    {% for usuario in usuarios %}
+      <li>{{ usuario.nombre_usuario }} - {{ usuario.email }}</li>
+    {% else %}
+      <li>No hay usuarios registrados.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+

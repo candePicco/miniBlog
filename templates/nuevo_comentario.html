@@ -1,0 +1,15 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Nuevo Comentario</h2>
+<form action="" method="post">
+    <label for="autor">Autor:</label>
+    <input type="text" id="autor" name="autor"><br><br>
+
+    <label for="comentario">Comentario:</label><br>
+    <textarea id="comentario" name="comentario" rows="4" cols="50"></textarea><br><br>
+
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}

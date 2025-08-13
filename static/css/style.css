@@ -1,0 +1,135 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* azul muy claro */
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Contenedor principal para evitar que el footer tape contenido */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 60px; /* espacio para el footer */
+}
+
+/* Caja para posts, categorías, comentarios */
+.box {
+    background-color: #ffffff;
+    border: 2px solid #a2d9ff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px rgba(100, 149, 237, 0.15);
+}
+
+/* Títulos de secciones */
+h1, h2, h3 {
+    color: #3a75c4; /* azul medio */
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* Botones */
+button, input[type="submit"] {
+    background-color: #71c7ff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    color: #003366;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #3ba1ff;
+    color: white;
+}
+
+/* Inputs y textareas */
+input[type="text"], input[type="email"], input[type="password"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    border: 1.8px solid #a2d9ff;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+    border-color: #3a75c4;
+    outline: none;
+}
+
+/* Listas */
+ul, ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+/* Links */
+a {
+    color: #3a75c4;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer fijo abajo con estilo azul claro */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #a2d9ff, #71c7ff);
+    border-top: 4px solid #3ba1ff; /* línea arriba azul vibrante */
+    text-align: center;
+    padding: 15px 0;
+    font-weight: 700;
+    color: #003366; /* azul oscuro para buen contraste */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    z-index: 1000;
+}
+
+/* Evitar que footer tape contenido */
+body, .container {
+    padding-bottom: 60px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: #0a3d62;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 80px;
+    width: auto;
+}

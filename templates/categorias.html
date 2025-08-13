@@ -1,0 +1,44 @@
+
+{% extends 'layout.html' %}
+{% block title %}Categorías{% endblock %}
+
+{% block content %}
+<h1>Categorías</h1>
+
+<!-- Mostrar mensajes flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for categoria in categorias %}
+      <tr>
+        <td>{{ categoria.nombre }}</td>
+        <td>
+          <form action="{{ url_for('eliminar_categoria', categoria_id=categoria.id) }}" method="POST" onsubmit="return confirm('¿Seguro querés eliminar la categoría {{ categoria.nombre }}? Esta acción no se puede deshacer.')">
+            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+    {% else %}
+      <tr><td colspan="2">No hay categorías aún.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{{ url_for('nueva_categoria') }}" class="btn btn-primary">Crear nueva categoría</a>
+{% endblock %}

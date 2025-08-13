@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Comentarios</h2>
+<a href="{{ url_for('nuevo_comentario') }}">➕ Nuevo Comentario</a>
+<ul>
+{% for comentario in comentarios %}
+    <li>
+        {{ comentario.texto }} - en Post ID {{ comentario.post_id }} por Usuario ID {{ comentario.usuario_id }}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

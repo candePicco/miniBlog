@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ post.titulo }}{% endblock %}
+
+{% block content %}
+  <article class="post-detalle">
+    <h1>{{ post.titulo }}</h1>
+    <p class="meta">
+      Publicado por <strong>{{ post.autor.nombre_usuario }}</strong> 
+      el {{ post.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}
+    </p>
+    <div class="contenido-post">
+      {{ post.contenido | nl2br }}
+    </div>
+
+    <section class="categorias-post">
+      <strong>Categorías:</strong>
+      {% for categoria in post.categorias %}
+        <span class="categoria">{{ categoria.nombre }}</span>
+      {% else %}
+        <span>No tiene categorías asignadas</span>
+      {% endfor %}
+    </section>
+
+    <section class="comentarios-post">
+      <h2>Comentarios ({{ post.comentarios|length }})</h2>
+      {% if post.comentarios %}
+        <ul>
+          {% for comentario in post.comentarios %}
+            <li>
+              <p>{{ comentario.texto | e }}</p>
+              <small>Por {{ comentario.autor.nombre_usuario }} el {{ comentario.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</small>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>Aún no hay comentarios.</p>
+      {% endif %}
+    </section>
+
+    <section class="form-comentario">
+      <h3>Agregar un comentario</h3>
+      <form action="{{ url_for('ver_post', post_id=post.id) }}" method="post">
+        <textarea name="texto_comentario" rows="4" required></textarea>
+        <button type="submit">Enviar comentario</button>
+      </form>
+    </section>
+
+    <p><a href="{{ url_for('index') }}">Volver al listado de posts</a></p>
+  </article>
+{% endblock %}

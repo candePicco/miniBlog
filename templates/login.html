@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}Iniciar sesión - MiniBlog{% endblock %}
+
+{% block content %}
+<h2>Iniciar sesión</h2>
+<form method="POST" action="{{ url_for('login') }}">
+    <label for="nombre_usuario">Nombre de usuario:</label>
+    <input type="text" name="nombre_usuario" id="nombre_usuario" required />
+
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" name="contrasena" id="contrasena" required />
+
+    <button type="submit">Entrar</button>
+</form>
+<p>¿No tenés cuenta? <a href="{{ url_for('registro') }}">Registrate acá</a>.</p>
+{% endblock %}
