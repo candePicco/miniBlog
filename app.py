@@ -15,13 +15,11 @@ app.config['SECRET_KEY'] = 'clave_super_secreta'
 db.init_app(app)
 migrate = Migrate(app, db)
 
-# Context processor para hacer disponibles categorías en todas las plantillas
 @app.context_processor
 def inject_categorias():
     categorias = Categoria.query.order_by(Categoria.nombre).all()
     return dict(categorias=categorias)
 
-# Decorador para rutas que requieren login
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -140,7 +138,6 @@ def nueva_categoria():
         return redirect(url_for('listar_categorias'))
     return render_template('nueva_categoria.html')
 
-# --- Rutas para manejo de usuarios: registro, login, logout ---
 
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
@@ -154,7 +151,7 @@ def registro():
             flash("Las contraseñas no coinciden.", "danger")
             return redirect(url_for('registro'))
 
-        # Verificar que usuario o correo no existan
+        
         existe = Usuario.query.filter(
             (Usuario.nombre_usuario == nombre_usuario) | 
             (Usuario.correo_electronico == correo)
@@ -167,7 +164,7 @@ def registro():
             nombre_usuario=nombre_usuario,
             correo_electronico=correo,
         )
-        # Guardar contraseña hasheada
+        
         usuario.contrasena = generate_password_hash(contrasena)
 
         db.session.add(usuario)
