@@ -18,7 +18,7 @@
 
                 {% if session.get('usuario_id') %}
                     
-                    <li><a href="{{ url_for('usuarios') }}">Usuarios</a></li>
+                    <li><a href="{{ url_for('listar_usuarios') }}">Usuarios</a></li>
                     <li><a href="{{ url_for('listar_categorias') }}">Categorías</a></li>
                     <li><a href="{{ url_for('crear_post') }}">Crear Post</a></li>
                     <li><a href="{{ url_for('logout') }}">Cerrar sesión ({{ session.get('nombre_usuario') }})</a></li>
